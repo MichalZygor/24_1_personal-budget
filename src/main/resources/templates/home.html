@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <style>
+        .text-color-mz1 {
+            color: darkgreen;
+        }
+
+        .bg-color-mz1 {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+<div class="container-fluid bg-white shadow-sm mt-5 mb-2 text-color-mz1 fs-4 text-center fw-bolder pt-3 pb-3">
+    START
+</div>
+
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">title</th>
+            <th scope="col">preptime</th>
+            <th scope="col">ingredients</th>
+            <th scope="col">description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="receipt: ${dane_z_sql}">
+            <td th:text="|${receipt.id}|">Otto</td>
+            <td th:text="|${receipt.description}|">Otto</td>
+            <td th:text="|${receipt.amount}|">@mdo</td>
+            <td th:text="|${receipt.type}|">kat1 </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="container-fluid bg-color-mz1 text-secondary shadow-sm mt-5 mb-2 fs-6 text-center pt-3 pb-3">
+    Designed by Michał Zygor, 2021.01
+</div>
+</body>
+</html>
