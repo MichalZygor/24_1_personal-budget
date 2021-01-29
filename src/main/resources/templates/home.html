@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DOMOWY BUDŻET</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <style>
+        .text-color-mz1 {
+            color: darkgreen;
+        }
+
+        .bg-color-mz1 {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+<div class="container-fluid bg-white shadow-sm mt-5 mb-2 text-color-mz1 fs-4 text-center fw-bolder pt-3 pb-3">
+    DOMOWY BUDŻET
+</div>
+
+<div class="container">
+    <div class="d-grid d-md-flex justify-content-md-end">
+        <a th:href="@{|/find?type=wydatek|}" class="btn btn-success m-1" href="/add" role="button">Wydatki</a>
+        <a th:href="@{|/find?type=przychód|}" class="btn btn-success m-1" href="/add" role="button">Przychody</a>
+        <a th:href="@{|/add|}" class="btn btn-success m-1" href="/add" role="button">Dodaj nowy produkt</a>
+        <a th:href="@{|/|}" class="btn btn-warning m-1" href="/" role="button">Strona główna</a>
+    </div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Typ transakcji</th>
+            <th scope="col">Kwota</th>
+            <th scope="col">Opis</th>
+            <th scope="col" colspan="2">Operacje na pozycjach</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="receipt: ${dane_z_sql}">
+            <td th:text="|${receipt.id}|">Otto</td>
+            <td th:text="|${receipt.type}|">Otto</td>
+            <td th:text="|${receipt.amount}|">@mdo</td>
+            <td th:text="|${receipt.description}|">kat1 </td>
+            <td><a href="#" th:href="@{|update?id=${receipt.id}|}">edtuj</a></td>
+            <td><a href="#" th:href="@{|remove?id=${receipt.id}|}">usuń</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="container-fluid bg-color-mz1 text-secondary shadow-sm mt-5 mb-2 fs-6 text-center pt-3 pb-3">
+    Designed by Michał Zygor, 2021.01
+</div>
+</body>
+</html>
