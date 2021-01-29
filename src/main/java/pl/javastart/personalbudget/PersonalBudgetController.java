@@ -21,20 +21,26 @@ public class PersonalBudgetController {
     }
 
     @GetMapping("/remove")
-    public String remove(@RequestParam(required = false, name = "id") Integer id){
+    public String remove(@RequestParam(required = false, name = "id") Integer id) {
         DAO.deleteById(id);
         return "redirect:/";
     }
 
     @GetMapping("/add")
-    public String add(){
+    public String add() {
         DAO.add(new Receipt("wydatek", "Wódka", BigDecimal.valueOf(55.12), "2021-01-29"));
         return "redirect:/";
     }
 
     @GetMapping("/update")
-    public String update(@RequestParam(required = false, name = "id") Integer id){
+    public String update(@RequestParam(required = false, name = "id") Integer id) {
         //DAO.update(new Receipt(3, "wydatek", "Wódka", BigDecimal.valueOf(55.12), "2021-01-29"));
         return "/add_update";
+    }
+
+    @GetMapping("/find")
+    public String update(Model model, @RequestParam(required = false, name = "type") String type) {
+        model.addAttribute("dane_z_sql", DAO.findByType(type).get());
+        return "home";
     }
 }

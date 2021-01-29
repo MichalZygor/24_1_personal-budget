@@ -8,6 +8,7 @@ import java.util.Optional;
 public class ReceiptDao {
     private final Connection connection = connect();
     private ArrayList<Receipt> receipts;
+
     public Optional<ArrayList<Receipt>> findAll() {
         Connection connection = connect();
         final String sql = "SELECT id, type, description, amount, date FROM personal_budget";
@@ -40,8 +41,15 @@ public class ReceiptDao {
         PreparedStatement preparedStatement = null;
         try {
             Statement statement = connection.createStatement();
+
+            preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, typeName);
-            ResultSet resultSet = statement.executeQuery(sql);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+
+            //preparedStatement.setString(1, typeName);
+            //ResultSet resultSet = statement.executeQuery(sql);
             if (true) {
                 receipts = new ArrayList<>();
                 while (resultSet.next()) {
