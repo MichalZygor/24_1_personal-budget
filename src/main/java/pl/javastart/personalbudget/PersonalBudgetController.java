@@ -23,18 +23,18 @@ public class PersonalBudgetController {
     @GetMapping("/remove")
     public String remove(@RequestParam(required = false, name = "id") Integer id){
         DAO.deleteById(id);
-        return "/test";
+        return "redirect:/";
     }
 
     @GetMapping("/add")
     public String add(){
         DAO.add(new Receipt("wydatek", "Wódka", BigDecimal.valueOf(55.12), "2021-01-29"));
-        return "/test";
+        return "redirect:/";
     }
 
     @GetMapping("/update")
-    public String update(){
-        DAO.update(new Receipt(3, "wydatek", "Wódka", BigDecimal.valueOf(55.12), "2021-01-29"));
-        return "/test";
+    public String update(@RequestParam(required = false, name = "id") Integer id){
+        //DAO.update(new Receipt(3, "wydatek", "Wódka", BigDecimal.valueOf(55.12), "2021-01-29"));
+        return "/add_update";
     }
 }
